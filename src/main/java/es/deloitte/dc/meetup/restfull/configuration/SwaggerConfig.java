@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.servers.Server;
@@ -24,15 +25,18 @@ public class SwaggerConfig {
   private String appName;
 
   @Bean
-  public OpenAPI customOpenAPI() {
+  public OpenAPI openApiBuilder() {
     List<Server> servers = new ArrayList<>();
-    servers.add(new Server().url(local).description("Servicio Web Local"));
+    servers.add(new Server().url(local).description("Servicio Local"));
     return new OpenAPI()
+        .components(new Components())
         .info(
             new Info()
                 .title(appName)
-                .description("Meetup API Rest")
+                .description("Formación API Rest Meetup Deloitte DC")
                 .version(appVersion))
         .servers(servers);
   }
+
+
 }
