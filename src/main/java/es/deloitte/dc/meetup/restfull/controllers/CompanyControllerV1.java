@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +20,6 @@ import es.deloitte.dc.meetup.restfull.model.Company;
 import es.deloitte.dc.meetup.restfull.payload.CompaniesV1;
 import es.deloitte.dc.meetup.restfull.payload.CompanyV1;
 import es.deloitte.dc.meetup.restfull.services.CompanyService;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
@@ -35,7 +35,7 @@ public class CompanyControllerV1 {
     produces = { "application/json", "application/xml" }
   )
   @ApiResponse(responseCode = "200")
-  public ResponseEntity<CompaniesV1> getAllCompanies(@RequestParam("isMultiNational") Boolean isMultiNational) {
+  public ResponseEntity<CompaniesV1> getAllCompanies(@RequestParam(name = "isMultiNational", required= false) Boolean isMultiNational) {
     List<Company> list;
     if (isMultiNational == null) {
       list = companyService.getAllCompanies();

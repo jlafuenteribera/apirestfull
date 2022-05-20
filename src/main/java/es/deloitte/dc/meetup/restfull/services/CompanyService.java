@@ -1,6 +1,6 @@
 package es.deloitte.dc.meetup.restfull.services;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -12,7 +12,7 @@ import es.deloitte.dc.meetup.restfull.model.Company;
 @Service
 public class CompanyService {
 
-  private static List<Company> companies = Arrays.asList(
+  private static ArrayList<Company> companies = new ArrayList<>(List.of(
       new Company("1", "Company 1", "M", false),
       new Company("2", "Company 2", "S", true),
       new Company("3", "Company 3", "XS", false),
@@ -22,7 +22,7 @@ public class CompanyService {
       new Company("7", "Company 7", "S", false),
       new Company("8", "Company 8", "M", true),
       new Company("9", "Company 9", "XS", false),
-      new Company("10", "Company 10", "XS", false));
+      new Company("10", "Company 10", "XS", false)));
 
   public List<Company> getAllCompanies() {
     return companies;
