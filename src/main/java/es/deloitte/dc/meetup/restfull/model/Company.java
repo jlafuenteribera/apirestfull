@@ -1,6 +1,4 @@
-package es.deloitte.dc.meetup.restfull.models;
-
-import javax.xml.bind.annotation.XmlRootElement;
+package es.deloitte.dc.meetup.restfull.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,12 +9,11 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@XmlRootElement
-public class CompanyV1 {
+public class Company {
   
   private String id;
   private String name;
   private String size;
-  private String isMultinational;
+  private Boolean isMultinational;
 
 }
