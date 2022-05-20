@@ -13,5 +13,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @XmlRootElement(name= "companies")
 public class CompaniesV2 {
+
   private List<CompanyV2> companies;
+
 }
