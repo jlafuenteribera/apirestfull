@@ -1,0 +1,958 @@
+openapi: 3.0.1
+info:
+  description: Formación API Rest Meetup Deloitte DC
+  title: API Rest Full
+  version: 0.0.1-SNAPSHOT
+servers:
+  - url: http://127.0.0.1:8080
+    description: Servicio Local
+tags:
+  - description: Company V1 Controller
+    name: Company V1
+  - description: Monitor and interact
+    externalDocs:
+      description: Spring Boot Actuator Web API Documentation
+      url: https://docs.spring.io/spring-boot/docs/current/actuator-api/html/
+    name: Actuator
+  - description: Country V1 Controller
+    name: Country V1
+  - description: Company V2 Controller
+    name: Company V2
+paths:
+  /actuator:
+    get:
+      operationId: links
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: object
+                  additionalProperties:
+                    $ref: '#/components/schemas/Link'
+            application/vnd.spring-boot.actuator.v2+json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: object
+                  additionalProperties:
+                    $ref: '#/components/schemas/Link'
+            application/vnd.spring-boot.actuator.v3+json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: object
+                  additionalProperties:
+                    $ref: '#/components/schemas/Link'
+          description: OK
+      summary: Actuator root web endpoint
+      tags:
+        - Actuator
+  /actuator/beans:
+    get:
+      operationId: beans
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+            application/vnd.spring-boot.actuator.v2+json:
+              schema:
+                type: object
+            application/vnd.spring-boot.actuator.v3+json:
+              schema:
+                type: object
+          description: OK
+      summary: Actuator web endpoint 'beans'
+      tags:
+        - Actuator
+  /actuator/caches:
+    delete:
+      operationId: caches_2
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                type: object
+          description: OK
+      summary: Actuator web endpoint 'caches'
+      tags:
+        - Actuator
+    get:
+      operationId: caches
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+            application/vnd.spring-boot.actuator.v2+json:
+              schema:
+                type: object
+            application/vnd.spring-boot.actuator.v3+json:
+              schema:
+                type: object
+          description: OK
+      summary: Actuator web endpoint 'caches'
+      tags:
+        - Actuator
+  /actuator/caches/{cache}:
+    delete:
+      operationId: caches-cache_2
+      parameters:
+        - in: path
+          name: cache
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+            application/vnd.spring-boot.actuator.v2+json:
+              schema:
+                type: object
+            application/vnd.spring-boot.actuator.v3+json:
+              schema:
+                type: object
+          description: OK
+      summary: Actuator web endpoint 'caches-cache'
+      tags:
+        - Actuator
+    get:
+      operationId: caches-cache
+      parameters:
+        - in: path
+          name: cache
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+            application/vnd.spring-boot.actuator.v2+json:
+              schema:
+                type: object
+            application/vnd.spring-boot.actuator.v3+json:
+              schema:
+                type: object
+          description: OK
+      summary: Actuator web endpoint 'caches-cache'
+      tags:
+        - Actuator
+  /actuator/conditions:
+    get:
+      operationId: conditions
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+            application/vnd.spring-boot.actuator.v2+json:
+              schema:
+                type: object
+            application/vnd.spring-boot.actuator.v3+json:
+              schema:
+                type: object
+          description: OK
+      summary: Actuator web endpoint 'conditions'
+      tags:
+        - Actuator
+  /actuator/configprops:
+    get:
+      operationId: configprops
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+            application/vnd.spring-boot.actuator.v2+json:
+              schema:
+                type: object
+            application/vnd.spring-boot.actuator.v3+json:
+              schema:
+                type: object
+          description: OK
+      summary: Actuator web endpoint 'configprops'
+      tags:
+        - Actuator
+  /actuator/configprops/{prefix}:
+    get:
+      operationId: configprops-prefix
+      parameters:
+        - in: path
+          name: prefix
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+            application/vnd.spring-boot.actuator.v2+json:
+              schema:
+                type: object
+            application/vnd.spring-boot.actuator.v3+json:
+              schema:
+                type: object
+          description: OK
+      summary: Actuator web endpoint 'configprops-prefix'
+      tags:
+        - Actuator
+  /actuator/env:
+    get:
+      operationId: env
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+            application/vnd.spring-boot.actuator.v2+json:
+              schema:
+                type: object
+            application/vnd.spring-boot.actuator.v3+json:
+              schema:
+                type: object
+          description: OK
+      summary: Actuator web endpoint 'env'
+      tags:
+        - Actuator
+  /actuator/env/{toMatch}:
+    get:
+      operationId: env-toMatch
+      parameters:
+        - in: path
+          name: toMatch
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+            application/vnd.spring-boot.actuator.v2+json:
+              schema:
+                type: object
+            application/vnd.spring-boot.actuator.v3+json:
+              schema:
+                type: object
+          description: OK
+      summary: Actuator web endpoint 'env-toMatch'
+      tags:
+        - Actuator
+  /actuator/health:
+    get:
+      operationId: health
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+            application/vnd.spring-boot.actuator.v2+json:
+              schema:
+                type: object
+            application/vnd.spring-boot.actuator.v3+json:
+              schema:
+                type: object
+          description: OK
+      summary: Actuator web endpoint 'health'
+      tags:
+        - Actuator
+  /actuator/health/**:
+    get:
+      operationId: health-path
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+            application/vnd.spring-boot.actuator.v2+json:
+              schema:
+                type: object
+            application/vnd.spring-boot.actuator.v3+json:
+              schema:
+                type: object
+          description: OK
+      summary: Actuator web endpoint 'health-path'
+      tags:
+        - Actuator
+  /actuator/heapdump:
+    get:
+      operationId: heapdump
+      responses:
+        '200':
+          content:
+            application/octet-stream:
+              schema:
+                type: object
+          description: OK
+      summary: Actuator web endpoint 'heapdump'
+      tags:
+        - Actuator
+  /actuator/info:
+    get:
+      operationId: info
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+            application/vnd.spring-boot.actuator.v2+json:
+              schema:
+                type: object
+            application/vnd.spring-boot.actuator.v3+json:
+              schema:
+                type: object
+          description: OK
+      summary: Actuator web endpoint 'info'
+      tags:
+        - Actuator
+  /actuator/loggers:
+    get:
+      operationId: loggers
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+            application/vnd.spring-boot.actuator.v2+json:
+              schema:
+                type: object
+            application/vnd.spring-boot.actuator.v3+json:
+              schema:
+                type: object
+          description: OK
+      summary: Actuator web endpoint 'loggers'
+      tags:
+        - Actuator
+  /actuator/loggers/{name}:
+    get:
+      operationId: loggers-name_2
+      parameters:
+        - in: path
+          name: name
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+            application/vnd.spring-boot.actuator.v2+json:
+              schema:
+                type: object
+            application/vnd.spring-boot.actuator.v3+json:
+              schema:
+                type: object
+          description: OK
+      summary: Actuator web endpoint 'loggers-name'
+      tags:
+        - Actuator
+    post:
+      operationId: loggers-name
+      parameters:
+        - in: path
+          name: name
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+              enum:
+                - TRACE
+                - DEBUG
+                - INFO
+                - WARN
+                - ERROR
+                - FATAL
+                - 'OFF'
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                type: object
+          description: OK
+      summary: Actuator web endpoint 'loggers-name'
+      tags:
+        - Actuator
+  /actuator/mappings:
+    get:
+      operationId: mappings
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+            application/vnd.spring-boot.actuator.v2+json:
+              schema:
+                type: object
+            application/vnd.spring-boot.actuator.v3+json:
+              schema:
+                type: object
+          description: OK
+      summary: Actuator web endpoint 'mappings'
+      tags:
+        - Actuator
+  /actuator/metrics:
+    get:
+      operationId: metrics
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+            application/vnd.spring-boot.actuator.v2+json:
+              schema:
+                type: object
+            application/vnd.spring-boot.actuator.v3+json:
+              schema:
+                type: object
+          description: OK
+      summary: Actuator web endpoint 'metrics'
+      tags:
+        - Actuator
+  /actuator/metrics/{requiredMetricName}:
+    get:
+      operationId: metrics-requiredMetricName
+      parameters:
+        - in: path
+          name: requiredMetricName
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+            application/vnd.spring-boot.actuator.v2+json:
+              schema:
+                type: object
+            application/vnd.spring-boot.actuator.v3+json:
+              schema:
+                type: object
+          description: OK
+      summary: Actuator web endpoint 'metrics-requiredMetricName'
+      tags:
+        - Actuator
+  /actuator/scheduledtasks:
+    get:
+      operationId: scheduledtasks
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+            application/vnd.spring-boot.actuator.v2+json:
+              schema:
+                type: object
+            application/vnd.spring-boot.actuator.v3+json:
+              schema:
+                type: object
+          description: OK
+      summary: Actuator web endpoint 'scheduledtasks'
+      tags:
+        - Actuator
+  /actuator/threaddump:
+    get:
+      operationId: threaddump_2
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+            application/vnd.spring-boot.actuator.v2+json:
+              schema:
+                type: object
+            application/vnd.spring-boot.actuator.v3+json:
+              schema:
+                type: object
+            text/plain;charset=UTF-8:
+              schema:
+                type: object
+          description: OK
+      summary: Actuator web endpoint 'threaddump'
+      tags:
+        - Actuator
+  /v1/companies:
+    get:
+      operationId: getAllCompanies_2
+      parameters:
+        - in: query
+          name: isMultiNational
+          required: false
+          schema:
+            type: boolean
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompaniesV1'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/CompaniesV1'
+          description: OK
+      tags:
+        - Company V1
+    post:
+      operationId: newCompany_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompanyV1'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/CompanyV1'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyV1'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/CompanyV1'
+          description: OK
+      tags:
+        - Company V1
+  /v1/companies/{id}:
+    delete:
+      operationId: getOsiTipById_1
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                type: boolean
+          description: OK
+        '404':
+          content:
+            '*/*':
+              schema:
+                type: boolean
+          description: Not Found
+      tags:
+        - Company V1
+    get:
+      operationId: getCompanyById_1
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyV1'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/CompanyV1'
+          description: OK
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyV1'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/CompanyV1'
+          description: Not Found
+      tags:
+        - Company V1
+    put:
+      operationId: updateCompany_1
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompanyV1'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/CompanyV1'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: boolean
+            application/xml:
+              schema:
+                type: boolean
+          description: OK
+        '404':
+          content:
+            application/json:
+              schema:
+                type: boolean
+            application/xml:
+              schema:
+                type: boolean
+          description: Not Found
+      tags:
+        - Company V1
+  /v1/countries:
+    get:
+      operationId: getAllCompanies_1
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Countries'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Countries'
+          description: OK
+      tags:
+        - Country V1
+  /v1/countries/{id}:
+    get:
+      operationId: getCountryById
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountryV1'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/CountryV1'
+          description: OK
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountryV1'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/CountryV1'
+          description: Not Found
+      tags:
+        - Country V1
+  /v2/companies:
+    get:
+      operationId: getAllCompanies
+      parameters:
+        - in: query
+          name: isMultiNational
+          required: false
+          schema:
+            type: boolean
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompaniesV2'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/CompaniesV2'
+          description: OK
+      tags:
+        - Company V2
+    post:
+      operationId: newCompany
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompanyV2'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/CompanyV2'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyV2'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/CompanyV2'
+          description: OK
+      tags:
+        - Company V2
+  /v2/companies/{id}:
+    delete:
+      operationId: getOsiTipById
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                type: boolean
+          description: OK
+        '404':
+          content:
+            '*/*':
+              schema:
+                type: boolean
+          description: Not Found
+      tags:
+        - Company V2
+    get:
+      operationId: getCompanyById
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyV2'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/CompanyV2'
+          description: OK
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyV2'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/CompanyV2'
+          description: Not Found
+      tags:
+        - Company V2
+    put:
+      operationId: updateCompany
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompanyV2'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/CompanyV2'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: boolean
+            application/xml:
+              schema:
+                type: boolean
+          description: OK
+        '404':
+          content:
+            application/json:
+              schema:
+                type: boolean
+            application/xml:
+              schema:
+                type: boolean
+          description: Not Found
+      tags:
+        - Company V2
+  /v2/companies/{id}/countries:
+    get:
+      operationId: getCountriesForCompany
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Countries'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Countries'
+          description: OK
+      tags:
+        - Company V2
+components:
+  schemas:
+    CollectionModelCompanyV2:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            companyV2List:
+              type: array
+              items:
+                $ref: '#/components/schemas/CompanyV2'
+        _links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    CollectionModelCountryV1:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            countryV1List:
+              type: array
+              items:
+                $ref: '#/components/schemas/CountryV1'
+        _links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    CompaniesV1:
+      type: object
+      properties:
+        companies:
+          type: array
+          items:
+            $ref: '#/components/schemas/CompanyV1'
+      xml:
+        name: companies
+    CompaniesV2:
+      type: object
+      properties:
+        companies:
+          $ref: '#/components/schemas/CollectionModelCompanyV2'
+      xml:
+        name: companies
+    CompanyV1:
+      type: object
+      properties:
+        id:
+          type: string
+        isMultinational:
+          type: boolean
+        name:
+          type: string
+        size:
+          type: string
+      xml:
+        name: company
+    CompanyV2:
+      type: object
+      properties:
+        _links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        id:
+          type: string
+        isMultinational:
+          type: boolean
+        name:
+          type: string
+        size:
+          type: string
+      xml:
+        name: company
+    Countries:
+      type: object
+      properties:
+        countries:
+          $ref: '#/components/schemas/CollectionModelCountryV1'
+      xml:
+        name: countries
+    CountryV1:
+      type: object
+      properties:
+        _links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        id:
+          type: string
+        name:
+          type: string
+      xml:
+        name: country
+    Link:
+      type: object
+      properties:
+        deprecation:
+          type: string
+        href:
+          type: string
+        hreflang:
+          type: string
+        name:
+          type: string
+        profile:
+          type: string
+        templated:
+          type: boolean
+        title:
+          type: string
+        type:
+          type: string

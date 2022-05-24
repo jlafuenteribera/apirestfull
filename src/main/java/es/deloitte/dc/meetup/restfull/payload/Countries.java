@@ -6,14 +6,16 @@ import org.springframework.hateoas.CollectionModel;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @AllArgsConstructor
-@XmlRootElement(name= "companies")
-public class CompaniesV2 {
-
-  private CollectionModel<CompanyV2> companies;
+@XmlRootElement(name = "countries")
+public class Countries {
+  
+  private CollectionModel<CountryV1> countries;
 
 }

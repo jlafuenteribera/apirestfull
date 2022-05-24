@@ -35,7 +35,7 @@ public class CompanyControllerV1 {
     produces = { "application/json", "application/xml" }
   )
   @ApiResponse(responseCode = "200")
-  public ResponseEntity<CompaniesV1> getAllCompanies(@RequestParam(name = "isMultiNational", required= false) Boolean isMultiNational) {
+  public ResponseEntity<CompaniesV1> getAllCompanies(@RequestParam(required= false) Boolean isMultiNational) {
     List<Company> list;
     if (isMultiNational == null) {
       list = companyService.getAllCompanies();
@@ -60,8 +60,8 @@ public class CompanyControllerV1 {
   )
   @ApiResponse(responseCode = "200")
   @ApiResponse(responseCode = "404")
-  public ResponseEntity<CompanyV1> getCompanyById(@PathVariable("id") String companyId) {
-    Company c = companyService.getCompany(companyId);
+  public ResponseEntity<CompanyV1> getCompanyById(@PathVariable String id) {
+    Company c = companyService.getCompany(id);
 
     if (c == null) {
       return ResponseEntity.notFound().build();
@@ -97,11 +97,11 @@ public class CompanyControllerV1 {
   )
   @ApiResponse(responseCode = "200")
   @ApiResponse(responseCode = "404")
-  public ResponseEntity<Boolean> updateCompany(@PathVariable("id") String companyId, @RequestBody CompanyV1 company) {
+  public ResponseEntity<Boolean> updateCompany(@PathVariable String id, @RequestBody CompanyV1 company) {
     Company c = new Company();
     BeanUtils.copyProperties(company, c);
 
-    Boolean updated = companyService.updateCompany(c, companyId);
+    Boolean updated = companyService.updateCompany(c, id);
 
     if (!updated) {
       return ResponseEntity.notFound().build();
@@ -115,8 +115,8 @@ public class CompanyControllerV1 {
   )
   @ApiResponse(responseCode = "200")
   @ApiResponse(responseCode = "404")
-  public ResponseEntity<Boolean> getOsiTipById(@PathVariable("id") String companyId) {
-    Boolean deleted = companyService.removeCompany(companyId);
+  public ResponseEntity<Boolean> getOsiTipById(@PathVariable String id) {
+    Boolean deleted = companyService.removeCompany(id);
 
     if (!deleted) {
       return ResponseEntity.notFound().build();
