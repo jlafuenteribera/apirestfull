@@ -115,7 +115,7 @@ public class CompanyControllerV1 {
   )
   @ApiResponse(responseCode = "200")
   @ApiResponse(responseCode = "404")
-  public ResponseEntity<Boolean> getOsiTipById(@PathVariable String id) {
+  public ResponseEntity<Boolean> removeCompany(@PathVariable String id) {
     Boolean deleted = companyService.removeCompany(id);
 
     if (!deleted) {

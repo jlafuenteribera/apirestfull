@@ -128,6 +128,7 @@ public class CompanyControllerV2 {
     BeanUtils.copyProperties(company, c);
 
     c = companyService.addCompany(c);
+    c.setCountries(new ArrayList<>());
 
     CompanyV2 c1 = new CompanyV2();
     BeanUtils.copyProperties(c, c1);
@@ -151,6 +152,7 @@ public class CompanyControllerV2 {
   public ResponseEntity<Boolean> updateCompany(@PathVariable String id, @RequestBody CompanyV2 company) {
     Company c = new Company();
     BeanUtils.copyProperties(company, c);
+    c.setCountries(new ArrayList<>());
 
     Boolean updated = companyService.updateCompany(c, id);
 
@@ -164,7 +166,7 @@ public class CompanyControllerV2 {
   @DeleteMapping(value = "/{id}")
   @ApiResponse(responseCode = "200")
   @ApiResponse(responseCode = "404")
-  public ResponseEntity<Boolean> getOsiTipById(@PathVariable String id) {
+  public ResponseEntity<Boolean> removeCompany(@PathVariable String id) {
     Boolean deleted = companyService.removeCompany(id);
 
     if (!deleted) {
